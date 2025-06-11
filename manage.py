@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+# 帳號：root
+# 密碼：a94002219
+
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
