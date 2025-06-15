@@ -15,14 +15,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+
+# step1：# import view function
 from django.contrib import admin
 from django.urls import path
-from posts.views import index  # import view function
+# from posts.views import index
+from posts.views import about
+from posts.views import index_use_template
+
 
 # 有功能就要新增在這裡("網址字串",view function)
 
 urlpatterns = [
-    path("admin/", admin.site.urls),  # http://127.0.0.1:8000/admin
-    path("", index),   # 新增此行
-    # path("about/",)
+    path("admin/", admin.site.urls),
+    # path("", index),
+    path("", index_use_template),
+    path("about", about),
 ]

@@ -52,11 +52,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "DjangoBlog.urls"
 
+# 告訴 Django：去哪裡找 HTML 模板、要不要找 app 裡的模板、每個模板可以用哪些內建變數。
 TEMPLATES = [
     {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
-        "APP_DIRS": True,
+        "BACKEND": "django.template.backends.django.DjangoTemplates",  # 指定使用哪個模板引擎。Django 預設就是用它自己內建的模板引擎
+        "DIRS": [BASE_DIR / 'templates'],  # 「我的 HTML 檔有一部分是放在專案裡的 templates 資料夾喔，去那邊找！」，此為OS語法
+        "APP_DIRS": True,  # 「你也可以幫我順便看看每個 app 裡面有沒有 templates 資料夾，那裡面也可能會放 HTML！」
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
