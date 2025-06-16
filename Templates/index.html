@@ -13,7 +13,7 @@
             <p class='post-date'> {{ article.pub_date}} </p>
         {% endfor %}
         <hr>
-        {{ now }}
+        {{ now }}  <!-- {{ now }} 這種寫法會去找你用 render() 傳進來的變數 -->
     </body>
 </html>
 
@@ -34,4 +34,3 @@
                 font-size: 10pt;
             }
         </style>
-<!-- {{ now }} 這種寫法會去找你用 render() 傳進來的變數 -->
