@@ -1,0 +1,38 @@
+Django 的 MTV 架構簡述
+元件	功能描述
+Model	負責資料庫存取（資料結構、查詢等）
+Template	負責網頁呈現（HTML 樣板與畫面）
+View	負責業務邏輯、處理請求與準備資料給 Template
+
+「使用者請求 → 模板繼承呈現頁面」完整流程結合 MTV
+
+1. 使用者請求網址（Request）
+
+2. Django 路由系統 (urls.py) 找到對應的 View 函式或類別
+
+3. View：
+   - 從 Model 抓資料（如果需要）
+   - 執行業務邏輯
+   - 呼叫 render(request, "home.html", context)
+     → 傳給 Template 的資料放在 context 中
+
+4. Template 引擎：
+   - 解析 "home.html"（子模板）
+   - 發現子模板有 {% extends "base.html" %} → 載入 base.html（母模板）
+   - 把子模板定義的 block 填入母模板對應的區塊
+   - 產生完整 HTML
+
+5. Django 把產生好的 HTML 回傳給瀏覽器顯示（HttpResponse）
+流程示意（整合 MTV）：
+階段	處理角色	說明
+使用者請求網址	—	輸入網址請求
+URL Routing	URLconf	將請求分發給正確的 View
+執行 View	View	處理資料與邏輯，決定要用哪個 Template
+取得資料（必要時）	Model	從資料庫取資料
+回傳給模板引擎	View + Template	用 render 呼叫模板引擎，模板繼承處理 HTML
+產生最終 HTML	Template 引擎	把母模板和子模板結合，生成完整 HTML
+回應瀏覽器	Django	把 HTML 包在 HttpResponse 回傳給瀏覽器
+
+簡化版流程圖
+
+[使用者] → 輸入網址 → [URL Routing] → 找到 View → View 讀 Model（可選）→ View 呼叫 render(template, context) → Temp

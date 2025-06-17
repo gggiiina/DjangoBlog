@@ -1,0 +1,19 @@
+<!--base.html的子板-->
+
+{% extends "scaffolds/base.html" %} <!--← 指定要繼承哪一個母板-->
+
+
+{% block content %}  <!--← 對應母板的 block 名稱，決定要填哪些區-->
+    <h1> Welcome to MyBlog </h1>
+    <hr>
+    {% for article in article_records %}
+        <a href="/post/{{article.slug}}">
+            <p class='post-title'> {{ article.title }} </p>
+        </a>
+        <p class='post-date'> {{ article.pub_date }} </p>
+    {% endfor %}
+
+    {% load static %}
+        <img src="{% static "images/img1.jpg"%}">
+
+{% endblock %}

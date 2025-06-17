@@ -5,11 +5,9 @@ from datetime import datetime
 
 
 # Vies：查詢資料去做畫面的呈現(渲染)，回傳至url
-# Create your views here.
 
-
-# Python 把文章資料一筆一筆撈出來，自己用 .format() 拼接 HTML 字串（像是 #1: 標題<br><hr>），最後用 HttpResponse() 把字串塞給使用者。
-# 缺點：所有 HTML 寫在 Python 裡，很亂、很難維護。
+# HttpResponse()：不使用模板引擎，將html直接寫在view finction中，難維護。
+# 以下index(request)為範例：Python 把文章資料一筆一筆撈出來，自己用 .format() 拼接 HTML 字串（像是 #1: 標題<br><hr>），最後用 HttpResponse() 把字串塞給使用者。
 
 def index(request):  # request來自於Django框架的結果
     # 查詢資料與資料庫操作
@@ -27,10 +25,19 @@ def about(requset):
     return HttpResponse("hello world")
 
 
-#  不在 view 裡寫 HTML，直接用 render()，請 Django 幫你去找 index.html 的模板檔，HTML 長怎樣，就交給模板決定。
-
+#  render()：使用模板引擎(template engineer)，不在 view 裡寫 HTML，直接用 ，請 Django 幫你去找 index.html 的模板檔，HTML 長怎樣，就交給模板決定。
 
 def index_use_template(requests):
     article_records = Post.objects.all()
     now = datetime.now()
-    return render(requests, "index.html", locals())  # locals()會把view function 使用過的變數變成字典檔存起來
+    # return render(requests, "index.html", locals())  # locals()會把view function 使用過的變數變成字典檔存起來
+    return render(requests, "pages/home.html", locals())
+
+
+def showPost(requests, slug):
+    article = Post.objects.get(slug=slug)  # 查詢單一參數用get
+    return render(requests, 'pages/post.html', locals())
+
+
+def login(requests):
+    return render(requests, 'pages/login.html')

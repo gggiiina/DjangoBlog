@@ -1,0 +1,12 @@
+
+<!--母板-->
+<!--模板繼承（母板）這不是 Python 原生語法，而是 Django 模板引擎（DTL）自己定義的語法規則。-->
+
+<html>
+    {% include "components/header.html" %}
+<body>
+    {% block content %} {% endblock %}
+    <hr>
+    {%include "components/footer.html" %}
+</body>
+</html>

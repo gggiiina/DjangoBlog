@@ -22,6 +22,9 @@ from django.urls import path
 # from posts.views import index
 from posts.views import about
 from posts.views import index_use_template
+from posts.views import showPost
+from posts.views import login
+
 
 
 # 有功能就要新增在這裡("網址字串",view function)
@@ -31,4 +34,6 @@ urlpatterns = [
     # path("", index),
     path("", index_use_template),
     path("about", about),
+    path("post/<slug:slug>", showPost),  # <資料型別:參數名稱>
+    path('login', login),
 ]
