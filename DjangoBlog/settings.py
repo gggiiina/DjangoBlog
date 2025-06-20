@@ -120,7 +120,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+
+# 告訴 Django 額外有哪些資料夾裡有靜態檔案（CSS、JS、圖片等），這些檔案會被自動納入 /static/ URL 對應的靜態資源清單中。
+STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "public/assets"  # 部屬到雲端伺服器會
 STATICFILES_DIRS = [
     BASE_DIR / 'static',

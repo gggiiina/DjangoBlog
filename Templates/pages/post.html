@@ -9,7 +9,8 @@
     </h1>
     <hr>
     {% load markdown_tag %}
-    <p class="post-body"> {{article.content | markdown | safe | linebreaks}} </p>
+    <!--|markdown：套用你剛剛定義的 markdown 過濾器，|safe：讓 Django 不要自動跳脫 HTML（否則 <h1> 會被轉成 &lt;h1&gt;）-->
+    <p class="post-body"> {{article.content | markdown | safe | linebreaks}} </p>  
     <p class="post-body"> {{article.content}} </p>
     <p class="post-date"> {{article.pub_date}} </p>
     <a href="/"><h5> 回首頁 </h5></a>
